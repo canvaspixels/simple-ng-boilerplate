@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- Note that I prefix all my directives with data- so that my page passes html5 validator -->
+<html lang="en" data-ng-app="theApp">
+<head>
+	<meta charset="UTF-8">
+	<title>{{title}}</title>
+	<style>
+body {
+	margin: 0;
+	transition: padding-left .2s;
+}
+ul {
+	margin: 0;
+	padding: 20px;
+}
+.sidePanelOpen {
+	padding-left: 300px;
+}
+nav {
+	background: black;
+	transition: left .2s;
+	width: 300px;
+	height: 100%;
+	left: -300px;
+	position: absolute;
+	top: 0;
+	padding-top: 30px;
+}
+nav a {
+	color: white;
+}
+.sidePanelOpen nav {
+	left: 0;
+}
+article {
+	padding: 20px;
+}
+.toggler {
+	position: absolute;
+	left: 20px;
+	top: 10px;
+}
+	</style>
+</head>
+<body class="sidePanelOpen" data-ng-class="{sidePanelOpen:isSidePanelOpen}">
+	<nav>
+		<ul>
+			<li data-ng-class="{current:currentPage === 'home'}"><a href="/">Homepage</a></li>
+			<li data-ng-class="{current:currentPage === 'page1'}"><a href="/my-page">Page 1</a></li>
+		</ul>
+	</nav>
+	<article>
+		<button class="toggler" data-ng-click="isSidePanelOpen = !isSidePanelOpen">Toggle side panel</button>
+		<h1>{{heading}}</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, exercitationem nostrum in libero expedita dolorum id atque doloremque modi minus. Tempore, mollitia ipsum suscipit harum ratione dolor aut cumque repellat!</p>
+		<!-- note data-ng-view needs to be present for the routing to work even if you don't use it -->
+		<div data-ng-view></div>
+	</article>
+	<script src="angular.min.js"></script>
+	<script src="angular-route.min.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
